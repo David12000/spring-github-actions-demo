@@ -20,3 +20,21 @@ jobs:
       with:
         name: artifact
         path: ./target/spring-github-actions-demo-0.1.jar
+        
+  releaseB:
+    runs-on: ubuntu-latest
+    name: Build2
+    steps:
+    - uses: actions/checkout@v4.2.2
+    - name: Set up JDK 8
+      uses: actions/setup-java@v4.5.0
+      with:
+        java-version: 8
+        distribution: zulu
+    - name: Build and package project
+      run: mvn -f pom.xml package
+    - name: Upload Maven build artifact
+      uses: actions/upload-artifact@v4.4.3
+      with:
+        name: artifact
+        path: ./target/spring-github-actions-demo-0.1.jar
